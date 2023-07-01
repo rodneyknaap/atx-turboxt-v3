@@ -2,6 +2,8 @@
 
 I hereby publish the third revision of my ATX Turbo-XT mainboard design.
 
+## Purpose and permitted use
+
 No guarantees of function or fitness for any useful purpose is given, building and using this design is at the sole responsibility of the builder.
 
 Do not attempt this project unless you have the necessary electronics assembly expertise and experience, and know how to observe all electronics safety guidelines which are applicable.
