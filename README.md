@@ -2,15 +2,15 @@
 
 I hereby publish the third revision of my ATX Turbo-XT mainboard design.
 
-No guarantees of function or fitness for any useful purpose is given, building this design is at the sole responsibility of the builder.
+No guarantees of function or fitness for any useful purpose is given, building and using this design is at the sole responsibility of the builder.
 
-Do not attempt this project unless you have the necessary electronics assembly expertise and experience, and know how to observe electronics safety guidelines.
+Do not attempt this project unless you have the necessary electronics assembly expertise and experience, and know how to observe all electronics safety guidelines which are applicable.
 
 Besides the GPL3 license there are a few warnings and usage restrictions applicable:
 
-This project was created out of historical reasons and for the purpose of enabling computing enthousiasts with a sufficient level of building and troubleshooting expertise to be able to experience the technology by building and troubleshooting the hardware described in this project.
+This project was created for historical purposes out of love for historical computing designs and for the purpose of enabling computing enthousiasts with a sufficient level of building and troubleshooting expertise to be able to experience the technology by building and troubleshooting the hardware described in this project.
 
-It is not permitted to use the computer built from this design without the assumtion of the possibility of loss of data or malfunction of the connected device.
+It is not permitted to use the computer built from this design without the assumtion of the possibility of loss of data or malfunction of the connected device. To be used strictly for hobby purposes only.
 
 If you plan to use this design or any part of it in new designs, the acknowledgement of the designer and the design sources and inspirations, historical and modern, of all subparts contained within this design should be included in your publication, to accredit the hard work, time and effort dedicated by the people before you who contributed to make your project possible.
 
@@ -19,6 +19,8 @@ No guarantee for any proper operation or suitability for any possible use or pur
 When connecting this system to a computer network which contains stored information on it, it is the sole responsibility and risk taking of the person making the connection, no guarantee is given against data loss or data corruption, malfunctions or failure of the whole computer network and information contained inside it on other devices and media which are connected to the same network.
 
 When building this project, the builder assumes personal responsibility for troubleshooting it and using the necessary care and expertise to make it function properly as defined by the design. Timing issues are likely to occur which require certain components to be of a suitable type to be able to meet the timing requirements for proper function. The prototype of the developer is proof of concept, please refer to the detailed partslist which includes type and manufacturer where necessary, however each new build may pose it's own challenges to bring it to success. This design is by nature not a turnkey solution and will only function 100% reliably when using all the components of similar timing and behaviour as was used in the prototype. Determining the right components may likely be experimental in nature and require expertise, effort and persistance. 
+
+This is an advanced project which contains many components, therefore the maximum care should be applied when soldering the PCB. When using IC sockets, ensure they are not fake sockets which are too loose to create a solid connection to the ICs. 
 
 After soldering the project, it's a strong recommendation to use proper lighting and magnification and systematically inspect all soldering points to detect any short circuits or open solder joints before powering up the system for testing. Short circuits which are not detected are likely to damage ICs and introduce hidden defects into your project which will be much more difficult to detect after the damage is done.
 
@@ -62,9 +64,14 @@ More information about the creation of XT-IDE hardware can be found [here](https
 Amazing and extremely efficient software, fast disk access for XT and various AT computers.
 Works with every IDE drive I have tested. Still under active development earlier in 2023.
 
-I have taken time to think about above acknowledgements. If anyone or anything is left out, that is not intentional, please contact me and I will update this page.
+All source data remains the copyright of the original creators and must be respected.
 
-BIOS for operation of this mainboard is composed as follows, top to bottom in the ROM:
+I have taken time to include above acknowledgements. If anyone or anything is left out, that is not intentional, please contact me and I will update this page.
+
+After studying the available design, I conceived this design with my own variations, circuit additions and changes which I see as improvements according to my personal design preferences.
+Some circuit areas are deducted from chip manufacturer datasheets to determine the proper interfacing methods in case of the application in an XT PC.
+
+BIOS for operation of this mainboard is up to the builder, the prototype's BIOS is composed as follows, top to bottom segments in the ROM image are as follows:
 8k   Super PC/Turbo XT BIOS (project by Jon Petrosky and Ya'akov Miles)
 8k   XT-IDE BIOS file (by XT-IDE universal BIOS team)
 configured to port 300 308 and XT-IDE v2 hardware, corrected for checksum=0
@@ -73,7 +80,8 @@ configuration of floppy drives according to instructions by Sergey
 40k  blank space "00" hex code
 This comprises a 64k BIOS image, the design accommodates two BIOS images in the 128k ROM, the page to be used can be switched by a jumper or switch. For testing it's advised to program two identical BIOS images into the ROM first. Initially it's best to use an EPROM which cannot be erased by software if there is any software trying to write into the BIOS region.
 
-Schematic diagram and PCB design are made in KiCad 5.1.7. I know this is an older release however I am used to working in this version and I don't want to change for now. It's also compatible with screenshots of JLCPCB guidelines of settings for creating the files for manufacturing.
+Schematic diagram is intentionally created as a single sheet for easier navigation. Schematic and PCB design are made in KiCad 5.1.7. I know this is an older release however I am used to working in this version and I don't want to change that. This KiCad version is fully compatible with screenshots of JLCPCB guidelines of settings for creating the files for manufacturing. I will be including my own KiCad library additions which need to be unpacked in the appropriate kicad shared library folder.
+
 
 
 
