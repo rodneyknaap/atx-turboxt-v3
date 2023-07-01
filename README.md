@@ -72,11 +72,15 @@ After studying the available design, I conceived this design with my own variati
 Some circuit areas are deducted from chip manufacturer datasheets to determine the proper interfacing methods in case of the application in an XT PC.
 
 BIOS for operation of this mainboard is up to the builder, the prototype's BIOS is composed as follows, top to bottom segments in the ROM image are as follows:
+
 8k   Super PC/Turbo XT BIOS (project by Jon Petrosky and Ya'akov Miles)
+
 8k   XT-IDE BIOS file (by XT-IDE universal BIOS team)
 configured to port 300 308 and XT-IDE v2 hardware, corrected for checksum=0
+
 8k   XT HD-Floppy BIOS extension (by Sergey Kiselev)
 configuration of floppy drives according to instructions by Sergey
+
 40k  blank space "00" hex code
 This comprises a 64k BIOS image, the design accommodates two BIOS images in the 128k ROM, the page to be used can be switched by a jumper or switch. For testing it's advised to program two identical BIOS images into the ROM first. Initially it's best to use an EPROM which cannot be erased by software if there is any software trying to write into the BIOS region.
 
