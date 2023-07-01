@@ -76,10 +76,10 @@ BIOS for operation of this mainboard is up to the builder, the prototype's BIOS 
 8k   Super PC/Turbo XT BIOS (project by Jon Petrosky and Ya'akov Miles)
 
 8k   XT-IDE BIOS file (by XT-IDE universal BIOS team)
-configured to port 300 308 and XT-IDE v2 ("Chuck mod") hardware, image is to be corrected for checksum=0 by XT-IDE config software.
+Configured to port 300/308 and XT-IDE v2 ("Chuck mod") hardware, image is to be corrected for checksum=0 by XT-IDE config software.
 
 8k   XT HD-Floppy BIOS extension (by Sergey Kiselev)
-configuration of floppy drives according to instructions by Sergey
+Configuration of floppy drive config bytes according to instructions provided by Sergey.
 
 40k  blank space "00" hex code
 This comprises a 64k BIOS image, the design accommodates two BIOS images in the 128k ROM, the page to be used can be switched by a jumper or switch. For testing it's advised to program two identical BIOS images into the ROM first. Initially it's best to use an EPROM which cannot be erased by software if there is any software trying to write into the BIOS region.
