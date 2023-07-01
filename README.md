@@ -80,7 +80,7 @@ configuration of floppy drives according to instructions by Sergey
 40k  blank space "00" hex code
 This comprises a 64k BIOS image, the design accommodates two BIOS images in the 128k ROM, the page to be used can be switched by a jumper or switch. For testing it's advised to program two identical BIOS images into the ROM first. Initially it's best to use an EPROM which cannot be erased by software if there is any software trying to write into the BIOS region.
 
-Schematic diagram is intentionally created as a single sheet for easier navigation. Schematic and PCB design are made in KiCad 5.1.7. I know this is an older release however I am used to working in this version and I don't want to change that. This KiCad version is fully compatible with screenshots of JLCPCB guidelines of settings for creating the files for manufacturing. I will be including my own KiCad library additions which need to be unpacked in the appropriate kicad shared library folder.
+Schematic diagram is intentionally created as a single sheet for easier navigation. Schematic and PCB design are made in KiCad 5.1.7. I know this is an older release however I am used to working in this version and I don't want/need to change that for now. This KiCad version is confirmed to be fully compatible with screenshots of JLCPCB guidelines of settings for creating the files for manufacturing. I will be including my own KiCad library additions which need to be unpacked in the appropriate kicad shared library folder.
 
 
 
