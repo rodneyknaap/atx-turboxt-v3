@@ -1,6 +1,8 @@
 # ATX Turbo-XT Mainboard V3
 
 I hereby publish the third revision of my ATX Turbo-XT mainboard design.
+I had my doubts whether it would be wise to share my project, however the fact that keeping technology to myself prevents others to benefit from it made me decide for a release.
+Open source is in my opinion an important concept for all technology of mankind to move into the future in a way which is able to benefit all of us.
 
 ## Purpose and permitted use, cautions for a potential builder of this design
 
@@ -20,7 +22,13 @@ No guarantee for any proper operation or suitability for any possible use or pur
 
 When connecting this system to a computer network which contains stored information on it, it is at the sole responsibility and risk of the person making the connection, no guarantee is given against data loss or data corruption, malfunctions or failure of the whole computer network and/or any information contained inside it on other devices and media which are connected to the same network.
 
-When building this project, the builder assumes personal responsibility for troubleshooting it and using the necessary care and expertise to make it function properly as defined by the design. Timing issues are likely to occur which require certain components to be of a suitable sufficient type to be able to meet the timing requirements for proper function. The prototype of the developer is proof of concept, please refer to the detailed partslist provided which includes type and manufacturer for all ICs where necessary, however each new build may pose it's own challenges to bring it to success. This design is by nature not a turnkey solution and will only function 100% reliably when using all the components of similar timing and behaviour as was used in the prototype. Determining the right components may likely be experimental in nature and require expertise, effort and persistance. Specifically the databus control transceivers and DMA handshaking circuits are sensitive to exact types of at least equivalent timing as the types specified in the IC list. The choice of DMA controller is a matter of trial and error, not all controller chips are of sufficient timing to control a floppy disk using this design, specifically a floppy disk format poses the most exact testing situation to ensure proper DMA operation.
+When building this project, the builder assumes personal responsibility for troubleshooting it and using the necessary care and expertise to make it function properly as defined by the design. Timing issues are likely to occur which require certain components to be of a suitable sufficient type to be able to meet the timing requirements for proper function. The prototype of the developer is proof of concept, please refer to the detailed partslist provided which includes type and manufacturer for all ICs where necessary, however each new build may pose it's own challenges to bring it to success. This design is by nature not a turnkey solution and will only function when using all the components of similar timing and behaviour as was used in the prototype. Determining the right components may likely be experimental in nature and require expertise, effort and persistance. Specifically the databus control transceivers and DMA handshaking circuits are sensitive to exact types of at least equivalent timing as the types specified in the IC list, refer to that list. The choice of DMA controller is a matter of trial and error, not all DMA controller chips are of sufficient timing to control a floppy disk using this design, specifically a floppy disk format poses the most exact testing situation to ensure proper DMA operation.
+
+The 24Mhz oscillator load capacitors should be used as specified in the design. If the total load (PCB capacitance + load capacitors) is too high, the oscillator will not run reliably and this will cause crashes, devide by zero errors, freezing, resets etc. Therefore ensure to observe the load capacitance suitable and proper stable operation of the oscillator. The ground shielding of the PCB traces of the clock signals comprise an addition to the load capacitance so the load capacitors themselves can be lower.
+
+There have been many capacitor footprints added to the edge of the ISA bus. These do not all need to be populated, but are instead intended for termination of signal reflections. Specifically, active high signals may be sensitive to noise generated from reflections. The best example is the RESETDRV signal on the ISA bus. If there is too much noise on such a signal it may cause certain I/O ICs such as UARTs to operate erroniously. For this reason the onboard UART RESET input has been purposely grounded. Use a 2.2nF capacitor for RESETDRV at least. Certain other signals may benefit from termination using lower capacitors. The higher the frequency of the signal, the lower the capacitor should be chosen as not to cause delays on the signal edges.
+
+Databus transceivers which drive the ISA bus should be chosen of LS245 types which give better stability results. HCT types have better amplitudes but are more sensitive in the system. Refer to the IC list for best choices, though you could experiment after achieving a stable system to see if more HCT types are possible. For driving the SRAM memory databus, HCT types are fine.
 
 This is an advanced project which contains many components, therefore the maximum care should be applied and maintained when soldering the PCB. Where using IC sockets, ensure they are proper quality sockets which are solid enough to create a reliable connection to the ICs inserted. Using sockets on DMA control circuits would be an advantage for trial and error testing to determine proper timing is reached.
 
@@ -71,25 +79,36 @@ This design is only released for hobby computing enthousiasts and educational pu
 
 I have taken time to respectfully include all the above acknowledgements. If anyone or anything is left out, that is absolutely not intentional, please contact me and I will update this page.
 
-After studying the available design, I conceived this design with my own variations, circuit additions and changes which I see as improvements according to my personal design preferences.
+After elaborately studying the available source design files which inspired the system, I conceived this design with my own variations, circuit additions and changes which I see as improvements according to my personal design views and preferences. Some logic types I have changed to get a better schematic perspective on an entire circuit area. My purpose was a good clear recreation in my own method, not to exactly copy the original. I have removed the DRAM refresh and parity check logic from the design. The refresh signal is available on the ISA bus for any expansion card designs which use it for timing.
+
 Some circuit areas are deducted from chip manufacturer datasheets to determine the proper interfacing methods in this application for an XT PC.
 
 BIOS choice for operation of this mainboard is up to the builder, the BIOS used in the operation of my build is composed as follows, top to bottom segments in the ROM image are:
 
-8k   Super PC/Turbo XT BIOS (project by Jon Petrosky and Ya'akov Miles)
+1: 8k   Super PC/Turbo XT BIOS (project by Jon Petrosky and Ya'akov Miles)
 
-8k   XT-IDE BIOS file (by XT-IDE universal BIOS team)
+2: 8k   XT-IDE BIOS file (by XT-IDE universal BIOS team)
 Configured to port 300/308 and XT-IDE v2 ("Chuck mod") hardware, image is to be corrected for checksum=0 by XT-IDE config software.
 
-8k   XT HD-Floppy BIOS extension (by Sergey Kiselev)
+3: 8k   XT HD-Floppy BIOS extension (by Sergey Kiselev)
 Configuration of floppy drive config bytes according to instructions provided by Sergey.
 
-40k  blank space "00" hex code
-This comprises a 64k BIOS image, the design accommodates two BIOS images in the 128k ROM, the page to be used can be switched by a jumper or switch. For testing it's advised to program two identical BIOS images into the ROM first. Initially it's best to use an EPROM which cannot be erased by software if there is any software trying to write into the BIOS region.
+remainder: 40k  blank space "00" hex code
+This comprises a 64k BIOS image, the design accommodates two BIOS images in the 128k ROM, the page to be used can be switched by a jumper or switch. For testing it's advised to program two identical BIOS images into the ROM first. Initially it's best to use an EPROM which cannot be erased by software if there is any software trying to write into the BIOS region. If you like to add other BIOS images you can simply include them into the BIOS image file since there are 5 segments of 8k available.
 
-What I did is to create two variations of the 64k BIOS, one which includes a DD 5,25 floppy drive, and the other includes a HD 5,25 floppy drive. I have added switches to the DS1 jumpers of the drives which enables to leave both connected to the floppy bus simultaniously. The switches change the BIOS and the drive select. Using a DD and HD 5,25 drive makes sure that any floppy disks are properly read and written, due to matching the proper track width compatibility of the original intended drives to the respective disks. In both of my BIOS versions, I have defined drive A: to be a 1,44MB HD 3,5 inch drive. Drive B contains the DD and HD versions of the 5,25 drives.
+What I did is to create two variations of the 64k BIOS, one which includes a DD 5,25 floppy drive, and the other includes a HD 5,25 floppy drive. I have added switches to the DS1 jumpers of my two 5,25 drives which enables to leave both connected to the floppy bus simultaniously. The switches change both the BIOS image selection and the drive selects. Using both a DD and HD 5,25 drive makes sure that any floppy disks are properly read and written, due to matching the proper track width compatibility of the original intended drives to the respective disks. In both of my BIOS versions, I have defined drive A: to be a 1,44MB HD 3,5 inch drive. Drive B settings contain the DD and HD versions of the 5,25 drives.
 
-The schematic diagram is intentionally created as a single sheet for easier navigation. Such a large sheet does slow down editing somewhat but it's an acceptable compromise in my opinion. Schematic and PCB design are made in KiCad 5.1.7. I know this is an older release however I am used to working in this version and I don't see a need to change that for now.
+The schematic diagram is intentionally created as a single sheet for fastest navigation back and forth between various circuit areas. Such a large single sheet does slow down editing somewhat but it's an acceptable compromise in my opinion once you get used to it. It's not the "fullness" of the schematic, but the sheet size which slows down the schematic editor somewhat, which can be lessened by occasionally saving and closing the schematic, and then opening it again. Schematic and PCB design are made in KiCad 5.1.7. I know this is not the latest release however I am used to working in this version and I don't see a need to change that for now since it has proven to be sufficient for this purpose.
 
-This KiCad version is confirmed to be fully compatible with screenshots of JLCPCB guidelines of settings for creating the files for manufacturing. I will be including my own KiCad library additions in the source files which need to be unpacked in the appropriate kicad installation shared library folders.
+This KiCad version is confirmed to be fully compatible with screenshots of JLCPCB guidelines of settings for creating the files for manufacturing. 
+I will be including my own KiCad library additions in the source files which need to be unpacked into the appropriate kicad installation shared library folders.
 
+I will not be further revising this design since I view it as completed. 
+
+My next project will be a 286 AT mainboard design comperable to the IBM 5170 and similar PCs.
+
+Thanks for your interest in this project,
+
+kind regards,
+
+Rodney
