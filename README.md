@@ -71,7 +71,7 @@ I have taken time to include above acknowledgements. If anyone or anything is le
 After studying the available design, I conceived this design with my own variations, circuit additions and changes which I see as improvements according to my personal design preferences.
 Some circuit areas are deducted from chip manufacturer datasheets to determine the proper interfacing methods in case of the application in an XT PC.
 
-BIOS for operation of this mainboard is up to the builder, the prototype's BIOS is composed as follows, top to bottom segments in the ROM image are as follows:
+BIOS for operation of this mainboard is up to the builder, the prototype's BIOS is composed as follows, top to bottom segments in the ROM image are:
 
 8k   Super PC/Turbo XT BIOS (project by Jon Petrosky and Ya'akov Miles)
 
