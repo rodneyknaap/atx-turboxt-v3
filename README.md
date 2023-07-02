@@ -10,7 +10,7 @@ This project was created for historical purposes out of love for historical comp
 
 ## Besides the GPL3 license there are a few warnings and usage restrictions applicable:
 
-No guarantees of function or fitness for any useful purpose is given, building and using this design is at the sole responsibility of the builder.
+No guarantees of function or fitness for any particular or useful purpose is given, building and using this design is at the sole responsibility of the builder.
 
 Do not attempt this project unless you have the necessary electronics assembly expertise and experience, and know how to observe all electronics safety guidelines which are applicable.
 
