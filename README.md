@@ -16,7 +16,7 @@ No guarantees of function or fitness for any particular or useful purpose is giv
 
 Do not attempt this project unless you have the necessary electronics assembly expertise and experience, and know how to observe all electronics safety guidelines which are applicable.
 
-It is not permitted to use the computer built from this design without the assumtion of the possibility of loss of data or malfunction of the connected device. To be used strictly for hobby purposes only.
+It is not permitted to use the computer built from this design without the assumption of the possibility of loss of data or malfunction of the connected device. To be used strictly for hobby purposes only.
 
 If you plan to use this design or any part of it in new designs, the acknowledgement of the designer and the design sources and inspirations, historical and modern, of all subparts contained within this design should be included and respected in your publication, to accredit the hard work, time and effort dedicated by the people before you who contributed to make your project possible.
 
