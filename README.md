@@ -1,3 +1,5 @@
+![Photo of the assembled ATX Turbo XT mainboard V3 PCB](IMG_1444.JPG)
+
 # ATX Turbo-XT Mainboard V3
 
 I hereby publish the third revision of my ATX Turbo-XT mainboard design.
