@@ -25,6 +25,8 @@ No guarantee for any proper operation or suitability for any possible use or pur
 When connecting this system to a computer network which contains stored information on it, it is at the sole responsibility and risk of the person making the connection, no guarantee is given against data loss or data corruption, malfunctions or failure of the whole computer network and/or any information contained inside it on other devices and media which are connected to the same network.
 
 When building this project, the builder assumes personal responsibility for troubleshooting it and using the necessary care and expertise to make it function properly as defined by the design. 
+You can email me with questions, but I will reply only if I have time and if I find the question to be valid. Which will probably also lead to an update here.
+I want to primarily dedicate my time to new project development, I am not able to do any user support, so that's why I provide the elaborate info here which will be expanded if needed.
 
 # Factors for proper operation and stability
 
