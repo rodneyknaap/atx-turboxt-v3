@@ -2,7 +2,7 @@
 
 I hereby publish the third revision of my ATX Turbo-XT mainboard design.
 I had my doubts whether it would be wise to share my project, however the fact that keeping technology to myself prevents others to benefit from it made me decide for a release.
-Open source is in my opinion an important concept for all technology of mankind to move into the future in a way which is able to benefit all of us.
+Open source is in my opinion the most important concept for all technology of mankind to move into the future in a way which has the potential to benefit all of us.
 
 ## Purpose and permitted use, cautions for a potential builder of this design
 
