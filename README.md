@@ -8,7 +8,7 @@ Open source is in my opinion the most important concept for all technology of ma
 
 This project was created for historical purposes out of love for historical computing designs and for the purpose of enabling computing enthousiasts with a sufficient level of building and troubleshooting expertise to be able to experience the technology by building and troubleshooting the hardware described in this project.
 
-Besides the GPL3 license there are a few warnings and usage restrictions applicable:
+## Besides the GPL3 license there are a few warnings and usage restrictions applicable:
 
 No guarantees of function or fitness for any useful purpose is given, building and using this design is at the sole responsibility of the builder.
 
