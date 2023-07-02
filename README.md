@@ -128,7 +128,7 @@ My next project will be a 286 AT mainboard design comperable to the IBM 5170 and
 I am still seeking a reference mainboard for my project and have not yet found a stable one because good examples are rare.
 I bought two "defective" mainboards from Ebay so far which proved to not be stable enough or only partially functional.
 I hope to find an AT mainboard of slightly later design, without a chipset, which includes higher CPU clock frequency and a more modern plastic 286.
-Anyone willing to donate a mainboard please get in touch with me.
+Anyone who would be willing to donate a mainboard, please get in touch with me.
 
 After the 286 I will attempt to integrate the 486 SLC in a subsequent future revision.
 
