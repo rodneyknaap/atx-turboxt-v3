@@ -92,20 +92,32 @@ After elaborately studying the available source design files which inspired the 
 
 Some circuit areas are deducted from chip manufacturer datasheets to determine the proper interfacing methods in this application for an XT PC.
 
-BIOS choice for operation of this mainboard is up to the builder, the BIOS used in the operation of my build is composed as follows, top to bottom segments in the ROM image are:
+# ROM BIOS
 
-1: 8k   Super PC/Turbo XT BIOS (project by Jon Petrosky and Ya'akov Miles)
+The choice of BIOS for operation of this mainboard is up to the builder, the BIOS used in the operation of my build works well, and is composed as follows, top to bottom segments in the ROM image are:
 
-2: 8k   XT-IDE BIOS file (by XT-IDE universal BIOS team)
-Configured to port 300/308 and XT-IDE v2 ("Chuck mod") hardware, image is to be corrected for checksum=0 by XT-IDE config software.
+0k-8k    Super PC/Turbo XT BIOS (project by Jon Petrosky and Ya'akov Miles)
 
-3: 8k   XT HD-Floppy BIOS extension (by Sergey Kiselev)
+8k-16k   XT-IDE BIOS file (by XT-IDE universal BIOS team)
+The BIOS must be configured to port 300/308 and XT-IDE v2 ("Chuck mod") hardware.
+The BIOS image is to be corrected for checksum=0 by XT-IDE config software and saved back into the BIOS.
+Using an 8088 you need the ide_xt.bin, for the NEC V20 you can use the ide_xtp.bin.
+
+16k-24k  XT HD-Floppy BIOS extension (by Sergey Kiselev)
 Configuration of floppy drive config bytes according to instructions provided by Sergey.
 
-remainder: 40k  blank space "00" hex code
+24k-64k  Remaining 40k  program with blank space "00" hex codes.
 This comprises a 64k BIOS image, the design accommodates two BIOS images in the 128k ROM, the page to be used can be switched by a jumper or switch. For testing it's advised to program two identical BIOS images into the ROM first. Initially it's best to use an EPROM which cannot be erased by software if there is any software trying to write into the BIOS region. If you like to add other BIOS images you can simply include them into the BIOS image file since there are 5 segments of 8k available.
 
 What I did is to create two variations of the 64k BIOS, one which includes a DD 5,25 floppy drive, and the other includes a HD 5,25 floppy drive. I have added switches to the DS1 jumpers of my two 5,25 drives which enables to leave both connected to the floppy bus simultaniously. The switches change both the BIOS image selection and the drive selects. Using both a DD and HD 5,25 drive makes sure that any floppy disks are properly read and written, due to matching the proper track width compatibility of the original intended drives to the respective disks. In both of my BIOS versions, I have defined drive A: to be a 1,44MB HD 3,5 inch drive. Drive B settings contain the DD and HD versions of the 5,25 drives.
+
+In order to create the BIOS image I used a cmd batch command.
+
+copy /b blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + floppy22_DD.bin + IDE_XTP.BIN + pcxtbios_phatcode.bin biosrom64k_dd_fdd.bin
+copy /b blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + floppy22.bin + IDE_XTP.BIN + pcxtbios_phatcode.bin biosrom64k_hd_fdd.bin
+copy /b biosrom64k_hd_fdd.bin + biosrom64k_dd_fdd.bin !biosrom_floppy22_switch_dd_hd_config.bin
+
+This should result in a 128kb file named !biosrom_floppy22_switch_dd_hd_config.bin
 
 The onboard RTL8019AS adapter is configured using the 93LC46 EEPROM. This EEPROM can be programmed using a programmer, I will provide a dump image of my example chip. The image also contains the MAC address so this should be varied slightly in your implementation.
 
