@@ -114,7 +114,9 @@ What I did is to create two variations of the 64k BIOS, one which includes a DD 
 In order to create the BIOS image I used a cmd batch command.
 
 copy /b blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + floppy22_DD.bin + IDE_XTP.BIN + pcxtbios_phatcode.bin biosrom64k_dd_fdd.bin
+
 copy /b blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + floppy22.bin + IDE_XTP.BIN + pcxtbios_phatcode.bin biosrom64k_hd_fdd.bin
+
 copy /b biosrom64k_hd_fdd.bin + biosrom64k_dd_fdd.bin !biosrom_floppy22_switch_dd_hd_config.bin
 
 This should result in a 128kb file named !biosrom_floppy22_switch_dd_hd_config.bin
