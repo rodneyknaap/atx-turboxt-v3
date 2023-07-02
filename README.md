@@ -125,9 +125,33 @@ This should result in a 128kb file named !biosrom_floppy22_switch_dd_hd_config.b
 
 The onboard RTL8019AS adapter is configured using the 93LC46 EEPROM. This EEPROM can be programmed using a programmer, I will provide a dump image of my example chip. The image also contains the MAC address so this should be varied slightly in your implementation.
 
-I will be appending the resource specification list here in this document for the IO devices integrated into this mainboard.
 The LPT port does not need interrupt 7 to operate so the jumper should be left open because of limited interrupts available in an XT.
 DMA timing jumpers provide alternatives for testing purposes, the settings indicated by the asterisk are defaults.
+
+Resources (besides obvious internal base XT chips):
+
+IO Ports:
+0300	XT-IDE
+0308	XT-IDE
+0340	LAN
+0378	LPT
+03F8	COM1
+
+IRQ list:
+IRQ0	system refresh timer
+IRQ1	Keyboard
+IRQ2	available
+IRQ3	LAN
+IRQ4	COM1
+IRQ5	available
+IRQ6	FDC
+IRQ7	SCSI
+
+DMA list:
+DMA 0	refresh dummy DMA
+DMA 1	free
+DMA 2	FDC
+DMA 3	free
 
 For the SCSI bus general practises for termination apply. The 53C400 is very solid, stable and fast and works really well with LS2000 drivers.
 A SCSI bus is an ideal period correct way to provide plug-in storage and CDROM access for an XT PC.
