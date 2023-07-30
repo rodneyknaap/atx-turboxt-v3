@@ -90,9 +90,9 @@ This design is only released for hobby computing enthousiasts and educational pu
 
 I have taken time to respectfully include all the above acknowledgements. If anyone or anything is left out, that is absolutely not intentional, please contact me and I will update this page.
 
-After elaborately studying the available source design files which inspired the system, I conceived this design with my own variations, circuit additions and changes which I see as improvements according to my personal design views and preferences. Some logic types I have changed to get a better schematic perspective on an entire circuit area. My purpose was a good clear recreation in my own method, not to exactly copy the original. I have removed the DRAM refresh and parity check logic from the design. The refresh signal is available on the ISA bus for any expansion card designs which use it for timing.
+After elaborately studying the available source design files which inspired the system, I conceived this design with my own variations, circuit additions and changes which I see as improvements according to my personal design views and preferences. Some logic types I have changed to get a better schematic perspective on an entire circuit area. My purpose was a good clear recreation in my own method, not to exactly copy the original. I have removed the DRAM refresh and parity check logic from the design.
 
-Some circuit areas are deducted from chip manufacturer datasheets to determine the proper interfacing methods in this application for an XT PC.
+I have designed most of the I/O control circuits using the chip manufacturer datasheets to determine the proper interfacing methods, ports etc suitable for this XT design.
 
 # ROM BIOS
 
@@ -102,11 +102,16 @@ The choice of BIOS for operation of this mainboard is up to the builder, the BIO
 
 8k-16k   XT-IDE BIOS file (by XT-IDE universal BIOS team)
 The BIOS must be configured to port 300/308 and XT-IDE v2 ("Chuck mod") hardware.
-The BIOS image is to be corrected for checksum=0 by XT-IDE config software and saved back into the BIOS.
+The BIOS image is to be corrected for checksum=0 by XT-IDE config software and then should be saved back into the BIOS.
 Using an 8088 you need the ide_xt.bin, for the NEC V20 you can use the ide_xtp.bin.
 
 16k-24k  XT HD-Floppy BIOS extension (by Sergey Kiselev)
 Configuration of floppy drive config bytes according to instructions provided by Sergey.
+It's best to configure your floppy drive configuration by setting the appropriate bytes in the image to correspond with the floppy drives you plan to connect.
+All drives should be set to drive select 1 (counting from 0) and the standard floppy cable twisting should be used to choose the first and second drive.
+Since it's a relatively modern FDC, floppy termination should be moderate for example 1k, and doesn't need to be done on all the floppy drives.
+Possibly, floppy drive termination on the drives themselves can even be left out or only present on one drive.
+The less resistance on the terminated signals, the less load on the FDC pins. 150 ohms is really too low a resistance to use and I recommend removing these when found on a drive and at least replacing with 1k, or leaving them out.
 
 24k-64k  Remaining 40k  program with blank space "00" hex codes.
 This comprises a 64k BIOS image, the design accommodates two BIOS images in the 128k ROM, the page to be used can be switched by a jumper or switch. For testing it's advised to program two identical BIOS images into the ROM first. Initially it's best to use an EPROM which cannot be erased by software if there is any software trying to write into the BIOS region. If you like to add other BIOS images you can simply include them into the BIOS image file since there are 5 segments of 8k available.
