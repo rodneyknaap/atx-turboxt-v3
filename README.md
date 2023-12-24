@@ -98,87 +98,88 @@ I have designed most of the I/O control circuits using the chip manufacturer dat
 
 The choice of BIOS for operation of this mainboard is up to the builder, the BIOS used in the operation of my build works well, and is composed as follows, top to bottom segments in the ROM image are:
 
-* 0k-8k    Super PC/Turbo XT BIOS (project by Jon Petrosky and Ya'akov Miles)
+0k-8k    Super PC/Turbo XT BIOS (project by Jon Petrosky and Ya'akov Miles)  
 
-* 8k-16k   XT-IDE BIOS file (by XT-IDE universal BIOS team)
+8k-16k   XT-IDE BIOS file (by XT-IDE universal BIOS team)  
 The BIOS must be configured to port 300/308 and XT-IDE v2 ("Chuck mod") hardware.
 The BIOS image is to be corrected for checksum=0 by XT-IDE config software and then should be saved back into the BIOS.
-Using an 8088 you need the ide_xt.bin, for the NEC V20 you can use the ide_xtp.bin.
+Using an 8088 you need the ide_xt.bin, for the NEC V20 you can use the ide_xtp.bin.  
 
-* 16k-24k  XT HD-Floppy BIOS extension (by Sergey Kiselev)
+16k-24k  XT HD-Floppy BIOS extension (by Sergey Kiselev)  
 Configuration of floppy drive config bytes according to instructions provided by Sergey.
 It's best to configure your floppy drive configuration by setting the appropriate bytes in the image to correspond with the floppy drives you plan to connect.
 All drives should be set to drive select 1 (counting from 0) and the standard floppy cable twisting should be used to choose the first and second drive.
 Since it's a relatively modern FDC, floppy termination should be moderate for example 1k, and doesn't need to be done on all the floppy drives.
 Possibly, floppy drive termination on the drives themselves can even be left out or only present on one drive.
-The less resistance on the terminated signals, the less load on the FDC pins. 150 ohms is really too low a resistance to use and I recommend removing these when found on a drive and at least replacing with 1k, or leaving them out.
+The less resistance on the terminated signals, the less load on the FDC pins. 150 ohms is really too low a resistance to use and I recommend removing these when found on a drive and at least replacing with 1k, or leaving them out.  
 
-* 24k-64k  Remaining 40k  program with blank space "00" hex codes.
-This comprises a 64k BIOS image, the design accommodates two BIOS images in the 128k ROM, the page to be used can be switched by a jumper or switch. For testing it's advised to program two identical BIOS images into the ROM first. Initially it's best to use an EPROM which cannot be erased by software if there is any software trying to write into the BIOS region. If you like to add other BIOS images you can simply include them into the BIOS image file since there are 5 segments of 8k available.
+24k-64k  Remaining 40k  program with blank space "00" hex codes.  
+This comprises a 64k BIOS image, the design accommodates two BIOS images in the 128k ROM, the page to be used can be switched by a jumper or switch. For testing it's advised to program two identical BIOS images into the ROM first. Initially it's best to use an EPROM which cannot be erased by software if there is any software trying to write into the BIOS region. If you like to add other BIOS images you can simply include them into the BIOS image file since there are 5 segments of 8k available.  
 
 What I did is to create two variations of the 64k BIOS, one which includes a DD 5,25 floppy drive, and the other includes a HD 5,25 floppy drive. I have added switches to the DS1 jumpers of my two 5,25 drives which enables to leave both connected to the floppy bus simultaniously. The switches change both the BIOS image selection and the drive selects. Using both a DD and HD 5,25 drive makes sure that any floppy disks are properly read and written, due to matching the proper track width compatibility of the original intended drives to the respective disks. In both of my BIOS versions, I have defined drive A: to be a 1,44MB HD 3,5 inch drive. Drive B settings contain the DD and HD versions of the 5,25 drives.
 
-In order to create the BIOS image I used a cmd batch command.
+In order to create the BIOS image I used a cmd batch command.  
 
-`copy /b blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + floppy22_DD.bin + IDE_XTP.BIN + pcxtbios_phatcode.bin biosrom64k_dd_fdd.bin`
+`copy /b blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + floppy22_DD.bin + IDE_XTP.BIN + pcxtbios_phatcode.bin biosrom64k_dd_fdd.bin`  
 
-`copy /b blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + floppy22.bin + IDE_XTP.BIN + pcxtbios_phatcode.bin biosrom64k_hd_fdd.bin`
+`copy /b blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + blank8k.bin + floppy22.bin + IDE_XTP.BIN + pcxtbios_phatcode.bin biosrom64k_hd_fdd.bin`  
 
-`copy /b biosrom64k_hd_fdd.bin + biosrom64k_dd_fdd.bin !biosrom_floppy22_switch_dd_hd_config.bin`
+`copy /b biosrom64k_hd_fdd.bin + biosrom64k_dd_fdd.bin !biosrom_floppy22_switch_dd_hd_config.bin`  
 
-This should result in a 128kb file named !biosrom_floppy22_switch_dd_hd_config.bin
+This should result in a 128kb file named !biosrom_floppy22_switch_dd_hd_config.bin  
 
-The onboard RTL8019AS adapter is configured using the 93LC46 EEPROM. This EEPROM can be programmed using a programmer, I will provide a dump image of my example chip. The image also contains the MAC address so this should be varied slightly in your implementation.
+The onboard RTL8019AS adapter is configured using the 93LC46 EEPROM. This EEPROM can be programmed using a programmer, I will provide a dump image of my example chip. The image also contains the MAC address so this should be varied slightly in your implementation.  
 
 The LPT port does not need interrupt 7 to operate so the jumper should be left open because of limited interrupts available in an XT.
-DMA timing jumpers provide alternatives for testing purposes, the settings indicated by the asterisk are defaults.
+DMA timing jumpers provide alternatives for testing purposes, the settings indicated by the asterisk are defaults.  
 
-Resources (besides obvious internal base XT chips):
+Resources (besides obvious internal base XT chips):  
 
-IO Ports:
-* 0300	XT-IDE
-* 0308	XT-IDE
-* 0340	LAN
-* 0378	LPT
-* 03F8	COM1
+IO Ports:  
+0300	XT-IDE  
+0308	XT-IDE  
+0340	LAN  
+0378	LPT  
+03F8	COM1  
 
-IRQ list:
-* IRQ0	system refresh timer
-* IRQ1	Keyboard
-* IRQ2	available
-* IRQ3	LAN
-* IRQ4	COM1
-* IRQ5	available
-* IRQ6	FDC
-* IRQ7	SCSI
+IRQ list:  
+IRQ0	system refresh timer  
+IRQ1	Keyboard  
+IRQ2	available  
+IRQ3	LAN  
+IRQ4	COM1  
+IRQ5	available  
+IRQ6	FDC  
+IRQ7	SCSI  
 
-DMA list:
-* DMA 0	refresh dummy DMA
-* DMA 1	free
-* DMA 2	FDC
-* DMA 3	free
+DMA list:  
+DMA 0	refresh dummy DMA  
+DMA 1	free  
+DMA 2	FDC  
+DMA 3	free  
+
 For the SCSI bus general practises for termination apply. The 53C400 is very solid, stable and fast and works really well with LS2000 drivers.
-A SCSI bus is an ideal period correct way to provide plug-in storage and CDROM access for an XT PC.
+A SCSI bus is an ideal period correct way to provide plug-in storage and CDROM access for an XT PC.  
 
-I operate my XT PC with a VGA card, the Video 7. Perhaps others like CGA or EGA which requires the correct dipswitch settings. I don't own any CGA monitor and besides I want to be able to use windows 3.0, play certain games and view photos in full VGA format on a modern monitor. I have tested a ATI Small Wonder card to operate properly on the composite output on a CRT.
+I operate my XT PC with a VGA card, the Video 7. Perhaps others like CGA or EGA which requires the correct dipswitch settings. I don't own any CGA monitor and besides I want to be able to use windows 3.0, play certain games and view photos in full VGA format on a modern monitor. I have tested a ATI Small Wonder card to operate properly on the composite output on a CRT.  
 
-The schematic diagram is intentionally created as a single sheet for fastest navigation back and forth between various circuit areas. Such a large single sheet does slow down editing somewhat but it's an acceptable compromise in my opinion once you get used to it. It's not the "fullness" of the schematic, but the sheet size which slows down the schematic editor somewhat, which can be lessened by occasionally saving and closing the schematic, and then opening it again. Schematic and PCB design are made in KiCad 5.1.7. I know this is not the latest release however I am used to working in this version and I don't see a need to change that for now since it has proven to be sufficient for this purpose.
+The schematic diagram is intentionally created as a single sheet for fastest navigation back and forth between various circuit areas. Such a large single sheet does slow down editing somewhat but it's an acceptable compromise in my opinion once you get used to it. It's not the "fullness" of the schematic, but the sheet size which slows down the schematic editor somewhat, which can be lessened by occasionally saving and closing the schematic, and then opening it again. Schematic and PCB design are made in KiCad 5.1.7. I know this is not the latest release however I am used to working in this version and I don't see a need to change that for now since it has proven to be sufficient for this purpose.  
 
 This KiCad version is confirmed to be fully compatible with screenshots of JLCPCB guidelines of settings for creating the files for manufacturing. 
-I will be including my own KiCad library additions in the source files which need to be unpacked into the appropriate kicad installation shared library folders.
+I will be including my own KiCad library additions in the source files which need to be unpacked into the appropriate kicad installation shared library folders.  
 
-I will not be further revising this design since I view it as completed. 
+I will not be further revising this design since I view it as completed.  
 
-My next project will be a 286 AT mainboard design comperable to the IBM 5170 and similar PCs, without the use of a chipset.
-I am still seeking a reference mainboard for my project and have not yet found a stable one because good examples are rare.
-I bought two "defective" mainboards from Ebay so far which proved to not be stable enough or only partially functional.
-I hope to find an AT mainboard of slightly later design, without a chipset, which includes higher CPU clock frequency and a more modern plastic 286.
-Anyone who would be willing to donate a mainboard, please get in touch with me.
+My next project is a 286 AT mainboard design comperable to the IBM 5170 and similar PCs, without the use of a chipset.  
+I am currently using a IBM 5170 type 3 mainboard as a reference and test board for my 286 project.
+I found that other clone boards I have tested so far contain errors and operate unreliably.
+The only 100% reliable specimen of this design phase of PC development I have found and was able to test myself is the IBM one.  
 
-After the 286 I will attempt to integrate the 486 SLC in a subsequent future revision.
+After the 286 I will attempt to integrate the 486 SLC in a subsequent future revision. 
+I am also working on a 5150 recreation in a complete modern ATX format, because I want an early 8 bit PC compatible computer which can still support a cassette interface for saving and loading programs.  
 
-Thanks for your interest in this project,
+Thanks for your interest in this project,  
 
-kind regards,
+kind regards,  
 
 Rodney
