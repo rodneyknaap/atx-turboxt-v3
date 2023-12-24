@@ -168,6 +168,18 @@ The schematic diagram is intentionally created as a single sheet for fastest nav
 This KiCad version is confirmed to be fully compatible with screenshots of JLCPCB guidelines of settings for creating the files for manufacturing. 
 I will be including my own KiCad library additions in the source files which need to be unpacked into the appropriate kicad installation shared library folders.  
 
+Update 24-12-2023: 
+I have done further testing with ALS and F type logic ICs to improve on the DMA timing, which allows for supporting a wider range of 8237-clone DMA controllers to function completely in the system. This is vitally important for supporting floppy disk writing and formatting, and for supporting sound samples to be played back through a soundblaster compatible soundcard for example in DOS games.  
+The result of my testing work is that after replacing with these ICs the DMA timing is much improved:
+
+U24 - 74ALS573 (no F type available at the moment)  
+U55 - 74F08  
+U58 - 74F74  
+U59 - 74F00  
+U60 - 74F74  
+
+These recommended ICs are now also included in the detailed txt partslist included in this GitHub project.
+
 I will not be further revising this design since I view it as completed.  
 
 My next project is a 286 AT mainboard design comperable to the IBM 5170 and similar PCs, without the use of a chipset.  
@@ -178,7 +190,7 @@ The only 100% reliable specimen of this design phase of PC development I have fo
 After the 286 I will attempt to integrate the 486 SLC in a subsequent future revision. 
 I am also working on a 5150 recreation in a complete modern ATX format, because I want an early 8 bit PC compatible computer which can still support a cassette interface for saving and loading programs.  
 
-Thanks for your interest in this project,  
+Thanks for your interest in this project. I would appreciate a message if anyone has built this mainboard.  
 
 kind regards,  
 
