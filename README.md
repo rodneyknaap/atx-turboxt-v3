@@ -178,7 +178,7 @@ U58 - 74F74
 U59 - 74F00  
 U60 - 74F74  
 
-These recommended ICs are now also included in the detailed txt partslist included in this GitHub project.
+These recommended ICs are now also included in the detailed txt partslist included in this GitHub project.  
 
 I will not be further revising this design since I view it as completed.  
 
