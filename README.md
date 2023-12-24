@@ -168,7 +168,7 @@ The schematic diagram is intentionally created as a single sheet for fastest nav
 This KiCad version is confirmed to be fully compatible with screenshots of JLCPCB guidelines of settings for creating the files for manufacturing. 
 I will be including my own KiCad library additions in the source files which need to be unpacked into the appropriate kicad installation shared library folders.  
 
-Update 24-12-2023: 
+# Update 24-12-2023:  
 I have done further testing with ALS and F type logic ICs to improve on the DMA timing, which allows for supporting a wider range of 8237-clone DMA controllers to function completely in the system. This is vitally important for supporting floppy disk writing and formatting, and for supporting sound samples to be played back through a soundblaster compatible soundcard for example in DOS games.  
 The result of my testing work is that after replacing with these ICs the DMA timing is much improved:
 
