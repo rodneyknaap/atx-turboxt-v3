@@ -98,14 +98,14 @@ I have designed most of the I/O control circuits using the chip manufacturer dat
 
 The choice of BIOS for operation of this mainboard is up to the builder, the BIOS used in the operation of my build works well, and is composed as follows, top to bottom segments in the ROM image are:
 
-0k-8k    Super PC/Turbo XT BIOS (project by Jon Petrosky and Ya'akov Miles)
+* 0k-8k    Super PC/Turbo XT BIOS (project by Jon Petrosky and Ya'akov Miles)
 
-8k-16k   XT-IDE BIOS file (by XT-IDE universal BIOS team)
+* 8k-16k   XT-IDE BIOS file (by XT-IDE universal BIOS team)
 The BIOS must be configured to port 300/308 and XT-IDE v2 ("Chuck mod") hardware.
 The BIOS image is to be corrected for checksum=0 by XT-IDE config software and then should be saved back into the BIOS.
 Using an 8088 you need the ide_xt.bin, for the NEC V20 you can use the ide_xtp.bin.
 
-16k-24k  XT HD-Floppy BIOS extension (by Sergey Kiselev)
+* 16k-24k  XT HD-Floppy BIOS extension (by Sergey Kiselev)
 Configuration of floppy drive config bytes according to instructions provided by Sergey.
 It's best to configure your floppy drive configuration by setting the appropriate bytes in the image to correspond with the floppy drives you plan to connect.
 All drives should be set to drive select 1 (counting from 0) and the standard floppy cable twisting should be used to choose the first and second drive.
@@ -113,7 +113,8 @@ Since it's a relatively modern FDC, floppy termination should be moderate for ex
 Possibly, floppy drive termination on the drives themselves can even be left out or only present on one drive.
 The less resistance on the terminated signals, the less load on the FDC pins. 150 ohms is really too low a resistance to use and I recommend removing these when found on a drive and at least replacing with 1k, or leaving them out.
 
-24k-64k  Remaining 40k  program with blank space "00" hex codes.
+* 24k-64k  Remaining 40k  program with blank space "00" hex codes.
+* 
 This comprises a 64k BIOS image, the design accommodates two BIOS images in the 128k ROM, the page to be used can be switched by a jumper or switch. For testing it's advised to program two identical BIOS images into the ROM first. Initially it's best to use an EPROM which cannot be erased by software if there is any software trying to write into the BIOS region. If you like to add other BIOS images you can simply include them into the BIOS image file since there are 5 segments of 8k available.
 
 What I did is to create two variations of the 64k BIOS, one which includes a DD 5,25 floppy drive, and the other includes a HD 5,25 floppy drive. I have added switches to the DS1 jumpers of my two 5,25 drives which enables to leave both connected to the floppy bus simultaniously. The switches change both the BIOS image selection and the drive selects. Using both a DD and HD 5,25 drive makes sure that any floppy disks are properly read and written, due to matching the proper track width compatibility of the original intended drives to the respective disks. In both of my BIOS versions, I have defined drive A: to be a 1,44MB HD 3,5 inch drive. Drive B settings contain the DD and HD versions of the 5,25 drives.
@@ -136,27 +137,27 @@ DMA timing jumpers provide alternatives for testing purposes, the settings indic
 Resources (besides obvious internal base XT chips):
 
 IO Ports:
-0300	XT-IDE
-0308	XT-IDE
-0340	LAN
-0378	LPT
-03F8	COM1
+* 0300	XT-IDE
+* 0308	XT-IDE
+* 0340	LAN
+* 0378	LPT
+* 03F8	COM1
 
 IRQ list:
-IRQ0	system refresh timer
-IRQ1	Keyboard
-IRQ2	available
-IRQ3	LAN
-IRQ4	COM1
-IRQ5	available
-IRQ6	FDC
-IRQ7	SCSI
+* IRQ0	system refresh timer
+* IRQ1	Keyboard
+* IRQ2	available
+* IRQ3	LAN
+* IRQ4	COM1
+* IRQ5	available
+* IRQ6	FDC
+* IRQ7	SCSI
 
 DMA list:
-DMA 0	refresh dummy DMA
-DMA 1	free
-DMA 2	FDC
-DMA 3	free
+* DMA 0	refresh dummy DMA
+* DMA 1	free
+* DMA 2	FDC
+* DMA 3	free
 
 For the SCSI bus general practises for termination apply. The 53C400 is very solid, stable and fast and works really well with LS2000 drivers.
 A SCSI bus is an ideal period correct way to provide plug-in storage and CDROM access for an XT PC.
