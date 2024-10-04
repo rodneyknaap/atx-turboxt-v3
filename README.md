@@ -182,7 +182,7 @@ These recommended ICs are now also included in the detailed txt partslist includ
 
 I will not be further revising this design since I view it as completed.  
 
-I was contacted by A-Small-Mice whi created his own modified version of Dante's ATX I/O Shield for the project.
+I was contacted by A-Small-Mice who created his own modified version of Dante's ATX I/O Shield for the project.
 I merged his request into the project so you can find the necessary files in the main directory.
 Thanks A-Small-Mice!
 
