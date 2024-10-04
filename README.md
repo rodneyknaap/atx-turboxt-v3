@@ -182,6 +182,10 @@ These recommended ICs are now also included in the detailed txt partslist includ
 
 I will not be further revising this design since I view it as completed.  
 
+I was contacted by A-Small-Mice whi created his own modified version of Dante's ATX I/O Shield for the project.
+I merged his request into the project so you can find the necessary files in the main directory.
+Thanks A-Small-Mice!
+
 My next project is a 286 AT mainboard design comperable to the IBM 5170 and similar PCs, without the use of a chipset.  
 I am currently using a IBM 5170 type 3 mainboard as a reference and test board for my 286 project.
 I found that other clone boards I have tested so far contain errors and operate unreliably.
