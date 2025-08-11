@@ -195,6 +195,15 @@ The only 100% reliable specimen of this design phase of PC development I have fo
 After the 286 I will attempt to integrate the 486 SLC in a subsequent future revision. 
 I am also working on a 5150 recreation in a complete modern ATX format, because I want an early 8 bit PC compatible computer which can still support a cassette interface for saving and loading programs.  
 
+# Notice about future follow up project plans  
+After gaining substantial experience using CPLD logic in PC projects, I plan to create a REV4 PC/XT design using one or more CPLD chips.
+The idea is to achieve a high level of integration, improving the bus structure, and I want to revisit including an RTC as well because I think I have discovered what the problem previously was.  
+
+Very likely the new XT design will be more compact than this project so possibly it will become a much smaller PCB.
+Additionally, it will contain a lot less components than this project. And I will probably experiment with replacing the bus controller ICs with CPLD logic based designs as I have done with the 286 CPU.  
+
+As soon as the new design is taking shape, I will create a new repository for it.  
+
 Thanks for your interest in this project. I would appreciate a message if anyone has built this mainboard.  
 
 kind regards,  
