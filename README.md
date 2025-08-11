@@ -200,7 +200,7 @@ After gaining substantial experience using CPLD logic in PC projects, I plan to 
 The idea is to achieve a high level of integration, improving the bus structure, and I want to revisit including an RTC as well because I think I have discovered what the problem previously was.  
 
 Very likely the new XT design will be more compact than this project so possibly it will become a much smaller PCB.
-Additionally, it will contain a lot less components than this project. And I will probably experiment with replacing the bus controller ICs with CPLD logic based designs as I have done with the 286 CPU.  
+Additionally, it will contain a lot less components than this project. And I will probably experiment with replacing the bus controller ICs with CPLD logic based designs as I have done with the 286 CPU. This work also depends on how much documentation about the 8088 cycle operation I will find, if the diagrams etc are enough information for me to be able to work with. I will publish more about this subject later.  
 
 As soon as the new design is taking shape, I will create a new repository for it.  
 
