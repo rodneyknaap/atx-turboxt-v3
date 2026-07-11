@@ -208,6 +208,22 @@ As soon as the new design is taking shape, I will create a new repository for it
 
 Thanks for your interest in this project. I would appreciate a message if anyone has built this mainboard.  
 
-kind regards,  
+# Update regarding the project blog  
+From july 2026 I will only update my project blog on my own website and I will update the readme info on GitHub for the projects.  
+
+So anyone who is interested is hereby invited to take a look at my website.
+I created a forum system there and if you like to join, feel free to send me an email and I will create a login for you so you can post subjects and reply to threads. 
+
+You can find my website in the repository link URL or via https://www.knaapic.nl  
+The menu "Historic computing" contains dedicated pages for the repository projects.
+A lot of information is the same as here but some details have been elaborated on my website.
+The forum link is: 
+https://knaapic.nl/community/   
+
+Thank you for your interest, I look forward to hearing from you!
+
+Kind regards,
 
 Rodney
+
+Updated last on july 11th, 2026.
